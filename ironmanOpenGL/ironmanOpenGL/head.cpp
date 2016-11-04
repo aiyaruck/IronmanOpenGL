@@ -238,12 +238,24 @@ void head()
 	glEnd();
 	glFlush();
 }
+void body()
+{
+	//GL_LINE_SMOOTH_HINT;
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glBegin(GL_POLYGON);
+		glColor3f(0.545, 0.000, 0.000);
+		glVertex2f(-22.73, 7.98);
+		glVertex2f(-23.14, 7.88);
+	glEnd();
+	
+	glFlush();
+}
 void display(void)
 {
 	glClearColor(1.0, 1.0, 1.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	head();
-	
+	body();
 }
 int main(int argc, char** argv)
 {
@@ -251,7 +263,7 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(1290, 625);
 	glutInitWindowPosition(40,80);
-	glutCreateWindow("Head Ironman");
+	glutCreateWindow("Ironman");
 	glutReshapeFunc;
 	gluOrtho2D(-30.0, 30.0, -16.0, 16.0);
 	glutDisplayFunc(display);

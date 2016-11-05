@@ -328,12 +328,63 @@ void body()
 	
 	glFlush();
 }
+void rightArm()
+{
+	glBegin(GL_LINE_STRIP);
+		glVertex2f(-14.47, 3.41);
+		glVertex2f(-14.42, 3.09);
+		glVertex2f(-14.21, 2.87);
+		glVertex2f(-13.67, 2.71);
+		glVertex2f(-13.41, 2.77);
+		glVertex2f(-13.04, 2.77);
+		glVertex2f(-12.66, 2.66);
+		glVertex2f(-12.34, 3.19);
+		glVertex2f(-12.02, 2.77);
+		glVertex2f(-12.45, 3.51);
+		glVertex2f(-12.34, 3.19);
+		glVertex2f(-12.66, 3.83);
+		glVertex2f(-12.40, 4.31);
+		glVertex2f(-12.02, 4.31);
+		glVertex2f(-11.76, 4.04);
+		glVertex2f(-11.55, 3.72);
+		glVertex2f(-11.39, 3.41);
+		glVertex2f(-11.12, 3.56);
+		glVertex2f(-10.59, 3.62);
+		glVertex2f(-10.85, 3.67);
+		glVertex2f(-10.59, 3.62);
+		glVertex2f(-10.32, 3.78);
+		glVertex2f(-10.06, 3.94);
+		glVertex2f(-9.74, 4.04);
+		glVertex2f(-9.36, 4.15);
+		glVertex2f(-9.04, 4.26);
+		glVertex2f(-8.67, 4.31);
+		glVertex2f(-8.30, 4.15);
+		glVertex2f(-8.25, 3.88);
+		glVertex2f(-8.51, 3.62);
+		glVertex2f(-8.89, 3.51);
+		glVertex2f(-9.36, 3.35);
+		glVertex2f(-9.04, 2.98);
+		glVertex2f(-8.67, 2.98);
+		glVertex2f(-8.30, 2.93);
+		glVertex2f(-7.93, 2.82);
+		glVertex2f(-7.71, 2.50);
+		glVertex2f(-7.98, 2.23);
+		glVertex2f(-8.35, 2.18);
+		glVertex2f(-8.78, 2.23);
+		glVertex2f(-9.15, 2.29);
+		glVertex2f(-9.47, 2.29);
+	glEnd();
+	
+	glFlush();
+
+}
 void display(void)
 {
 	glClearColor(1.0, 1.0, 1.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	body();
 	head();
+	rightArm();
 
 	glFlush();
 }

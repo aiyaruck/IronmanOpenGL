@@ -3,6 +3,10 @@
 #include <math.h>
 #define PI 3.1415926535898
 GLfloat angleleg = 0;
+float backgroundRed = 0;
+float backgroundGreen = 0;
+float backgroundBlue = 0;
+float backgroundAlpha = 0;
 
 void MyCircle2f(GLfloat centerx, GLfloat centery, GLfloat radius)
 {
@@ -14,6 +18,20 @@ void MyCircle2f(GLfloat centerx, GLfloat centery, GLfloat radius)
 	for (i = 0; i < circle_points; i++)
 	{
 		theta = 2 * PI*i / circle_points; // angle in radians
+		glVertex2f(centerx + radius*cos(theta), centery + radius*sin(theta));
+	}
+	glEnd();
+}
+void MySemiCircle2f(GLfloat centerx, GLfloat centery, GLfloat radius)
+{
+	GLint i;
+	GLdouble theta;
+	GLint circle_points = 100;
+
+	glBegin(GL_POLYGON);
+	for (i = 0; i < circle_points; i++)
+	{
+		theta = 1 * PI*i / circle_points; // angle in radians
 		glVertex2f(centerx + radius*cos(theta), centery + radius*sin(theta));
 	}
 	glEnd();
@@ -2437,13 +2455,479 @@ void rightLeg()
 	
 
 }
+void windowOfTower()
+{
+	glBegin(GL_QUADS); //Tower 1.1 - lefe
+		glColor3f(0.863, 0.863, 0.863);
+		glVertex2f(-30.17, -19.15);
+		glVertex2f(-30.17, -18.73);
+		glVertex2f(-29.90, -18.73);
+		glVertex2f(-29.90, -19.15);
+	glEnd();
+}
+void towerOne()
+{
+		glBegin(GL_QUADS); //Tower 1.1 - lefe
+			glColor3f(0.098, 0.098, 0.439);
+			glVertex2f(-30.22, -20.01);
+			glVertex2f(-30.22, -19.37);
+			glVertex2f(-27.67, -19.37);
+			glVertex2f(-27.67, -20.01);
+		glEnd();
+			glBegin(GL_QUADS); //Tower 1.2 - lefe
+				glVertex2f(-30.22, -14.47);
+				glVertex2f(-30.22, -19.37);
+				glVertex2f(-28.15, -19.37);
+				glVertex2f(-28.15, -14.47);
+			glEnd();
+				glBegin(GL_QUADS); //Tower 1.3 - lefe
+					glVertex2f(-30.22, -14.47);
+					glVertex2f(-30.22, -11.01);
+					glVertex2f(-28.52, -11.01);
+					glVertex2f(-28.52, -14.47);
+				glEnd();
+					glBegin(GL_QUADS); //Tower 1.4 - lefe
+						glVertex2f(-30.22, -11.01);
+						glVertex2f(-30.22, -9.95);
+						glVertex2f(-28.94, -9.95);
+						glVertex2f(-28.94, -11.01);
+					glEnd();
+						glBegin(GL_QUADS); //Tower 1.5 - lefe
+							glVertex2f(-30.22, -9.95);
+							glVertex2f(-30.22, -8.19);
+							glVertex2f(-29.53, -8.19);
+							glVertex2f(-29.53, -9.95);
+						glEnd();
+							glBegin(GL_QUADS); //Tower 1.6 - lefe
+								glVertex2f(-29.85, -8.19);
+								glVertex2f(-29.79, -7.13);
+								glVertex2f(-29.53, -7.13);
+								glVertex2f(-29.53, -8.19);
+							glEnd();
+}
+void towerTwo(){
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-28.41, -20.00);
+		glVertex2f(-28.41, -9.74);
+		glVertex2f(-25.01, -9.74);
+		glVertex2f(-25.01, -20.00);
+	glEnd();
+	glBegin(GL_TRIANGLES); 
+		glVertex2f(-28.41, -9.74);
+		glVertex2f(-26.80, -8.00);
+		glVertex2f(-25.01, -9.74);
+	glEnd();
+	glBegin(GL_LINES);
+		glVertex2f(-26.80, -8.00);
+		glVertex2f(-26.80, -4.00);
+	glEnd();
+}
+void towerThree()
+{
+	glBegin(GL_QUADS); 
+		glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(-25.70, -20.00 );
+		glVertex2f(-25.70, -12.08);
+		glVertex2f(-16.71, -12.08);
+		glVertex2f(-16.71, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex2f(-22.88, -12.08);
+		glVertex2f(-22.88, -9.79);
+		glVertex2f(-19.47, -9.79);
+		glVertex2f(-19.47, -12.08);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex2f(-21.87, -9.79);
+		glVertex2f(-21.87, -7.82);
+		glVertex2f(-20.48, -7.82);
+		glVertex2f(-20.48, -9.79);
+	glEnd();
+}
+void towerFour()
+{
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-16.71, -20.00);
+		glVertex2f(-16.71, -13.73);
+		glVertex2f(-15.38, -13.73);
+		glVertex2f(-15.38, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex2f(-15.38, -20.00);
+		glVertex2f(-15.38, -16.60);
+		glVertex2f(-12.29, -16.60);
+		glVertex2f(-12.29, -20.00);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+		glVertex2f(-15.38, -16.60);
+		glVertex2f(-13.51, -15.20);
+		glVertex2f(-12.29, -16.60);
+	glEnd();
+	glBegin(GL_LINES);
+		glVertex2f(-15.64, -11.76);
+		glVertex2f(-15.64, -16.60);
+	glEnd();
+}
+void towerFive()
+{
+
+	glBegin(GL_QUADS);
+		glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(-12.40, -20.00);
+		glVertex2f(-12.40, -8.62);
+		glVertex2f(-7.02, -12.18);
+		glVertex2f(-7.02, -20.00);
+	glEnd();
+}
+void towerSix()
+{
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-7.18, -20.00);
+		glVertex2f(-7.18, -12.02);
+		glVertex2f(-4.68, -12.02);
+		glVertex2f(-4.68, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-4.68, -20.00);
+		glVertex2f(-4.68, -12.98);
+		glVertex2f(-4.26, -12.98);
+		glVertex2f(-4.26, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-3.30, -20.00);
+		glVertex2f(-3.30, -14.58);
+		glVertex2f(-4.26, -14.58);
+		glVertex2f(-4.26, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-5.91, -12.02);
+		glVertex2f(-5.91, -11.07);
+		glVertex2f(-5.05, -11.07);
+		glVertex2f(-5.05, -12.02);
+	glEnd();
+}
+void towerSeven()
+{
+	glBegin(GL_QUADS);
+		glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(-6.12, -20.00);
+		glVertex2f(-6.12, -18.46);
+		glVertex2f(-0.37, -18.46);
+		glVertex2f(-0.37, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(-5.11, -18.46);
+		glVertex2f(-5.11, -17.08);
+		glVertex2f(-1.49, -17.08);
+		glVertex2f(-1.49, -18.46);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(-5.11, -18.46);
+		glVertex2f(-3.25, -15.38);
+		glVertex2f(-1.44, -18.46);
+	glEnd();
+}
+void towerEight()
+{
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(0.48, -20.00);
+		glVertex2f(0.48, -12.93);
+		glVertex2f(4.26, -12.93);
+		glVertex2f(4.26, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(1.28, -12.93);
+		glVertex2f(1.28, -11.97);
+		glVertex2f(3.83, -11.97);
+		glVertex2f(3.83, -12.93);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(1.28, -11.97);
+		glVertex2f(2.55, -10.75);
+		glVertex2f(3.83, -11.97);
+	glEnd();
+
+}
+void towerNine()
+{
+	glBegin(GL_QUADS);
+		glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(2.02, -20.00);
+		glVertex2f(2.02, -19.47);
+		glVertex2f(7.34, -19.47);
+		glVertex2f(7.34, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(3.03, -19.47);
+		glVertex2f(3.03, -14.15);
+		glVertex2f(6.33, -14.15);
+		glVertex2f(6.33, -19.47);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(3.46, -14.15);
+		glVertex2f(3.46, -9.31);
+		glVertex2f(5.85, -9.31);
+		glVertex2f(5.85, -14.15);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(3.99, -9.31);
+		glVertex2f(3.99, -5.50);
+		glVertex2f(5.32, -5.50);
+		glVertex2f(5.32, -9.31);
+	glEnd();
+	glLineWidth(3);
+	glBegin(GL_LINES);
+		glVertex2f(5.00, -5.75);
+		glVertex2f(5.00, -3.20);
+	glEnd();
+	glLineWidth(1);
+}
+void towerTen()
+{
+	glBegin(GL_QUADS);
+	glColor3f(1.000, 0.627, 0.478);
+	glVertex2f(-25.70, -20.00);
+	glVertex2f(-25.70, -12.08);
+	glVertex2f(-16.71, -12.08);
+	glVertex2f(-16.71, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+	glVertex2f(-22.88, -12.08);
+	glVertex2f(-22.88, -9.79);
+	glVertex2f(-19.47, -9.79);
+	glVertex2f(-19.47, -12.08);
+	glEnd();
+	glBegin(GL_QUADS);
+	glVertex2f(-21.87, -9.79);
+	glVertex2f(-21.87, -7.82);
+	glVertex2f(-20.48, -7.82);
+	glVertex2f(-20.48, -9.79);
+	glEnd();
+}
+void towerEleven()
+{
+	glBegin(GL_QUADS);
+		glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(11.86, -20.00);
+		glVertex2f(11.86, -14.63);
+		glVertex2f(17.13, -14.63);
+		glVertex2f(17.13, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+	glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(12.77, -14.63);
+		glVertex2f(13.19, -12.88);
+		glVertex2f(16.07, -12.88);
+		glVertex2f(17.12, -14.63);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(0.098, 0.098, 0.439);
+		glVertex2f(15.59, -12.88);
+		glVertex2f(15.59, -10.85);
+		glVertex2f(14.58, -10.85);
+		glVertex2f(14.58, -12.88);
+	glEnd();
+}
+void towerTwelve()
+{
+	
+	glBegin(GL_QUADS);
+		glVertex2f(-28.41, -20.00);
+		glVertex2f(-28.41, -9.74);
+		glVertex2f(-25.01, -9.74);
+		glVertex2f(-25.01, -20.00);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+		glVertex2f(-28.41, -9.74);
+		glVertex2f(-26.80, -8.00);
+		glVertex2f(-25.01, -9.74);
+	glEnd();
+	glBegin(GL_LINES);
+		glVertex2f(-26.80, -8.00);
+		glVertex2f(-26.80, -4.00);
+	glEnd();
+}
+void towerThirteen()
+{
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-12.40, -20.00);
+		glVertex2f(-12.40, -8.62);
+		glVertex2f(-7.02, -12.18);
+		glVertex2f(-7.02, -20.00);
+	glEnd();
+}
+void towerFourteen()
+{
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(2.02, -20.00);
+		glVertex2f(2.02, -19.47);
+		glVertex2f(7.34, -19.47);
+		glVertex2f(7.34, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex2f(3.03, -19.47);
+		glVertex2f(3.03, -14.15);
+		glVertex2f(6.33, -14.15);
+		glVertex2f(6.33, -19.47);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex2f(3.46, -14.15);
+		glVertex2f(3.46, -9.31);
+		glVertex2f(5.85, -9.31);
+		glVertex2f(5.85, -14.15);
+	glEnd();
+
+}
+void towerFiftteen()
+{
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-16.71, -20.00);
+		glVertex2f(-16.71, -13.73);
+		glVertex2f(-15.38, -13.73);
+		glVertex2f(-15.38, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex2f(-15.38, -20.00);
+		glVertex2f(-15.38, -16.60);
+		glVertex2f(-12.29, -16.60);
+		glVertex2f(-12.29, -20.00);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+		glVertex2f(-15.38, -16.60);
+		glVertex2f(-13.51, -15.20);
+		glVertex2f(-12.29, -16.60);
+	glEnd();
+	glBegin(GL_LINES);
+		glVertex2f(-15.64, -11.76);
+		glVertex2f(-15.64, -16.60);
+	glEnd();
+}
+void towerSixteen()
+{
+	glBegin(GL_QUADS);
+	glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-7.18, -20.00);
+		glVertex2f(-7.18, -12.02);
+		glVertex2f(-4.68, -12.02);
+		glVertex2f(-4.68, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-4.68, -20.00);
+		glVertex2f(-4.68, -12.98);
+		glVertex2f(-4.26, -12.98);
+		glVertex2f(-4.26, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-3.30, -20.00);
+		glVertex2f(-3.30, -14.58);
+		glVertex2f(-4.26, -14.58);
+		glVertex2f(-4.26, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-5.91, -12.02);
+		glVertex2f(-5.91, -11.07);
+		glVertex2f(-5.05, -11.07);
+		glVertex2f(-5.05, -12.02);
+	glEnd();
+}
+void towerSeventeen()
+{
+	glBegin(GL_QUADS);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-6.12, -20.00);
+		glVertex2f(-6.12, -18.46);
+		glVertex2f(-0.37, -18.46);
+		glVertex2f(-0.37, -20.00);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex2f(-5.11, -18.46);
+		glVertex2f(-5.11, -17.08);
+		glVertex2f(-1.49, -17.08);
+		glVertex2f(-1.49, -18.46);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+		glVertex2f(-5.11, -18.46);
+		glVertex2f(-3.25, -15.38);
+		glVertex2f(-1.44, -18.46);
+	glEnd();
+}
+void background(){
+	towerTwo();
+	towerOne();
+	towerFour();
+	towerThree();
+	towerSix();
+	towerFive();
+	towerEight();
+	towerSeven();
+	glPushMatrix();
+		glTranslatef(30, -5, 0);
+		towerThirteen();
+	glPopMatrix();
+	glPushMatrix();
+		glTranslatef(30, -3, 0);
+		towerTen();
+	glPopMatrix();
+	towerNine(); 
+	towerEleven();
+	glPushMatrix();
+		glTranslatef(47, 0, 0);
+		towerTwelve();
+	glPopMatrix();
+	glPushMatrix();
+		glTranslatef(34, 0, 0);
+		towerFourteen();
+	glPopMatrix();
+	glPushMatrix();
+		glTranslatef(65, 0, 0);
+		towerThree();
+	glPopMatrix();
+	glPushMatrix();
+		glTranslatef(39.5, 0, 0);
+		towerFiftteen();
+	glPopMatrix();
+	glPushMatrix();
+		glTranslatef(39.5, -4, 0);
+		towerSixteen();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(33, 0, 0);
+	towerSeventeen();
+	glPopMatrix();
+
+}
 void display(void)
 {
-	glClearColor(1.0, 1.0, 1.0, 0.0);
+	
+	backgroundRed = 0.529; //set backgrourd to start program
+	backgroundGreen = 0.808; //set backgrourd to start program
+	backgroundBlue = 0.980; //set backgrourd to start program
+	glClearColor(backgroundRed, backgroundGreen, backgroundBlue, backgroundAlpha);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluOrtho2D(-30.0, 45.0, -20.0, 16.0);
+	background();
 	rightLeg();
 	underWare();
 	rightArm();

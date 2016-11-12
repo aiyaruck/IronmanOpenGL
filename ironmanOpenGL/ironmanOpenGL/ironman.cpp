@@ -7,6 +7,7 @@ float backgroundRed = 0;
 float backgroundGreen = 0;
 float backgroundBlue = 0;
 float backgroundAlpha = 0;
+int setColorWindows = 0;
 
 void MyCircle2f(GLfloat centerx, GLfloat centery, GLfloat radius)
 {
@@ -2458,7 +2459,8 @@ void rightLeg()
 void windowOfTower()
 {
 	glBegin(GL_QUADS); //Tower 1.1 - lefe
-		glColor3f(0.863, 0.863, 0.863);
+	if (setColorWindows == 0){ glColor3f(0.863, 0.863, 0.863); }
+	else if (setColorWindows == 1){ glColor3f(1.000, 1.000, 1.000); }
 		glVertex2f(-30.17, -19.15);
 		glVertex2f(-30.17, -18.73);
 		glVertex2f(-29.90, -18.73);
@@ -2504,6 +2506,44 @@ void towerOne()
 								glVertex2f(-29.53, -7.13);
 								glVertex2f(-29.53, -8.19);
 							glEnd();
+	glPushMatrix();
+	for (int i = 0; i < 3; i++){
+		glTranslatef(0.5,0,0);
+		windowOfTower();
+	}
+	glPushMatrix();
+	for (int i = 0; i < 4; i++){
+		glTranslatef(0, 1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 2; i++){
+		glTranslatef(-0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 3; i++){
+		glTranslatef(0, -1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 6; i++){
+		glTranslatef(0, 1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(-1, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 7; i++){
+		glTranslatef(0, -1, 0);
+		windowOfTower();
+	}
+
+	
+
+	glPopMatrix();
 }
 void towerTwo(){
 	glBegin(GL_QUADS);
@@ -2521,6 +2561,45 @@ void towerTwo(){
 	glBegin(GL_LINES);
 		glVertex2f(-26.80, -8.00);
 		glVertex2f(-26.80, -4.00);
+	glEnd();
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(2, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 11; i++){
+		glTranslatef(0, 0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(1, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 11; i++){
+		glTranslatef(0, -0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(1, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 11; i++){
+		glTranslatef(0, 0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.9, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 11; i++){
+		glTranslatef(0, -0.8, 0);
+		windowOfTower();
+	}
+	glPopMatrix();
+		glBegin(GL_TRIANGLES);
+		glVertex2f(-27.99, -9.52);
+		glVertex2f(-26.75, -8.60);
+		glVertex2f(-25.50, -9.52);
 	glEnd();
 }
 void towerThree()
@@ -2544,6 +2623,65 @@ void towerThree()
 		glVertex2f(-20.48, -7.82);
 		glVertex2f(-20.48, -9.79);
 	glEnd();
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(5, 0, 0);
+		windowOfTower();
+	}
+	for (int j = 0; j < 2; j++){
+		for (int i = 0; i < 6; i++){
+			glTranslatef(0, 1, 0);
+			windowOfTower();
+		}
+		for (int i = 0; i < 1; i++){
+			glTranslatef(0.5, 0, 0);
+			windowOfTower();
+		}
+		for (int i = 0; i < 12; i++){
+			glTranslatef(0, -0.5, 0);
+			windowOfTower();
+		}
+		for (int i = 0; i < 1; i++){
+			glTranslatef(0.5, 0, 0);
+			windowOfTower();
+		}
+		for (int i = 0; i < 12; i++){
+			glTranslatef(0, 0.5, 0);
+			windowOfTower();
+		}
+		for (int i = 0; i < 1; i++){
+			glTranslatef(1, 0, 0);
+			windowOfTower();
+		}
+		for (int i = 0; i < 12; i++){
+			glTranslatef(0, -0.5, 0);
+			windowOfTower();
+		}
+		for (int i = 0; i < 1; i++){
+			glTranslatef(0.5, 0, 0);
+			windowOfTower();
+		}
+		for (int i = 0; i < 12; i++){
+			glTranslatef(0, 0.5, 0);
+			windowOfTower();
+		}
+		for (int i = 0; i < 1; i++){
+			glTranslatef(0.5, 0, 0);
+			windowOfTower();
+		}
+		for (int i = 0; i < 6; i++){
+			glTranslatef(0, -1, 0);
+			windowOfTower();
+		}
+		if (j < 1){
+			for (int i = 0; i < 1; i++){
+				glTranslatef(1, 0, 0);
+				windowOfTower();
+			}
+		}
+	}
+	
+	glPopMatrix();
 }
 void towerFour()
 {
@@ -2569,10 +2707,27 @@ void towerFour()
 		glVertex2f(-15.64, -11.76);
 		glVertex2f(-15.64, -16.60);
 	glEnd();
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(13.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 6; i++){
+		glTranslatef(0, 0.7, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(1, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 6; i++){
+		glTranslatef(0, -0.7, 0);
+		windowOfTower();
+	}
+	glPopMatrix();
 }
 void towerFive()
 {
-
 	glBegin(GL_QUADS);
 		glColor3f(0.098, 0.098, 0.439);
 		glVertex2f(-12.40, -20.00);
@@ -2580,6 +2735,61 @@ void towerFive()
 		glVertex2f(-7.02, -12.18);
 		glVertex2f(-7.02, -20.00);
 	glEnd();
+
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(18, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 11; i++){
+		glTranslatef(0, 0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.8, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 12; i++){
+		glTranslatef(0, -0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, 0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 10; i++){
+		glTranslatef(0, 0.8, 0);
+		windowOfTower();
+	}
+
+
+
+	glPopMatrix();
+
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(18.8, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 6; i++){
+		glTranslatef(0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(-1.5, 1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 11; i++){
+		glTranslatef(0, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(-1.5, 1, 0);
+		windowOfTower();
+	}
+	
+	glPopMatrix();
+	
 }
 void towerSix()
 {
@@ -2611,6 +2821,59 @@ void towerSix()
 		glVertex2f(-5.05, -11.07);
 		glVertex2f(-5.05, -12.02);
 	glEnd();
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(23.6, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 13; i++){
+		glTranslatef(0, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, -2, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 8; i++){
+		glTranslatef(0, -0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(2, 2, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 2; i++){
+		glTranslatef(0, 0.8, 0);
+		windowOfTower();
+	}
+	glPopMatrix();
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(23.2, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 11; i++){
+		glTranslatef(0, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 3; i++){
+		glTranslatef(0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 3; i++){
+		glTranslatef(-0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 4; i++){
+		glTranslatef(0.3, -0.5, 0);
+		windowOfTower();
+	}
+	setColorWindows = 0;
+	glPopMatrix();
 }
 void towerSeven()
 {
@@ -2633,6 +2896,68 @@ void towerSeven()
 		glVertex2f(-5.11, -18.46);
 		glVertex2f(-3.25, -15.38);
 		glVertex2f(-1.44, -18.46);
+	glEnd();
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(25, -0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(2, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(1, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0, -0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(-0.5, 0, 0);
+		windowOfTower();
+	}
+
+	glPopMatrix();
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(25.5, -1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 5; i++){
+		glTranslatef(0, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 5; i++){
+		glTranslatef(0.5, 0, 0);
+		windowOfTower();
+	}
+	
+	for (int i = 0; i < 5; i++){
+		glTranslatef(-0.5, 0, 0);
+		windowOfTower();
+	}
+	setColorWindows = 0;
+	glPopMatrix();
+
+	glBegin(GL_TRIANGLES);
+		glColor3f(0.863, 0.863, 0.863);
+		glVertex2f(-3.75, -16.81);
+		glVertex2f(-3.25, -15.99);
+		glVertex2f(-2.75, -16.81);
 	glEnd();
 }
 void towerEight()
@@ -2657,6 +2982,48 @@ void towerEight()
 		glVertex2f(2.55, -10.75);
 		glVertex2f(3.83, -11.97);
 	glEnd();
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(30.7, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 10; i++){
+		glTranslatef(0, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 12; i++){
+		glTranslatef(0, -0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(1, 2, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 5; i++){
+		glTranslatef(0, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0, 3, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 2; i++){
+		glTranslatef(0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0, -0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 3; i++){
+		glTranslatef(-0.50, 0, 0);
+		windowOfTower();
+	}
+	glPopMatrix();
 
 }
 void towerNine()
@@ -2695,27 +3062,120 @@ void towerNine()
 		glVertex2f(5.00, -3.20);
 	glEnd();
 	glLineWidth(1);
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(35, -0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 13; i++){
+		glTranslatef(0, 1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(-0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 26; i++){
+		glTranslatef(0,-0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(1, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 9; i++){
+		glTranslatef(0, 1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, -4.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 5; i++){
+		glTranslatef(0, -1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(-2, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 18; i++){
+		glTranslatef(0, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(-0.5,-4, 0);
+		windowOfTower();
+	}
+	glPopMatrix();
+	glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(37, 1, 0);
+		windowOfTower();
+	}
+	//glPushMatrix();
+	for (int i = 0; i < 3; i++){
+		glTranslatef(0, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(1, 1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 8; i++){
+		glTranslatef(0, -0.7, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(1, 2, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 3; i++){
+		glTranslatef(0, 0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0, 3, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 3; i++){
+		glTranslatef(-0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 5; i++){
+		glTranslatef(0.5, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 10; i++){
+		glTranslatef(0, -1, 0);
+		windowOfTower();
+	}
+	glPopMatrix();
 }
 void towerTen()
 {
 	glBegin(GL_QUADS);
-	glColor3f(1.000, 0.627, 0.478);
-	glVertex2f(-25.70, -20.00);
-	glVertex2f(-25.70, -12.08);
-	glVertex2f(-16.71, -12.08);
-	glVertex2f(-16.71, -20.00);
+		glColor3f(1.000, 0.627, 0.478);
+		glVertex2f(-25.70, -20.00);
+		glVertex2f(-25.70, -12.08);
+		glVertex2f(-16.71, -12.08);
+		glVertex2f(-16.71, -20.00);
 	glEnd();
 	glBegin(GL_QUADS);
-	glVertex2f(-22.88, -12.08);
-	glVertex2f(-22.88, -9.79);
-	glVertex2f(-19.47, -9.79);
-	glVertex2f(-19.47, -12.08);
+		glVertex2f(-22.88, -12.08);
+		glVertex2f(-22.88, -9.79);
+		glVertex2f(-19.47, -9.79);
+		glVertex2f(-19.47, -12.08);
 	glEnd();
 	glBegin(GL_QUADS);
-	glVertex2f(-21.87, -9.79);
-	glVertex2f(-21.87, -7.82);
-	glVertex2f(-20.48, -7.82);
-	glVertex2f(-20.48, -9.79);
+		glVertex2f(-21.87, -9.79);
+		glVertex2f(-21.87, -7.82);
+		glVertex2f(-20.48, -7.82);
+		glVertex2f(-20.48, -9.79);
 	glEnd();
 }
 void towerEleven()
@@ -2741,10 +3201,12 @@ void towerEleven()
 		glVertex2f(14.58, -10.85);
 		glVertex2f(14.58, -12.88);
 	glEnd();
+	glPushMatrix();
+	
+	
 }
 void towerTwelve()
 {
-	
 	glBegin(GL_QUADS);
 		glVertex2f(-28.41, -20.00);
 		glVertex2f(-28.41, -9.74);
@@ -2763,6 +3225,7 @@ void towerTwelve()
 }
 void towerThirteen()
 {
+
 	glBegin(GL_QUADS);
 		glColor3f(1.000, 0.627, 0.478);
 		glVertex2f(-12.40, -20.00);
@@ -2770,6 +3233,7 @@ void towerThirteen()
 		glVertex2f(-7.02, -12.18);
 		glVertex2f(-7.02, -20.00);
 	glEnd();
+	
 }
 void towerFourteen()
 {
@@ -2849,6 +3313,7 @@ void towerSixteen()
 		glVertex2f(-5.05, -11.07);
 		glVertex2f(-5.05, -12.02);
 	glEnd();
+	
 }
 void towerSeventeen()
 {
@@ -2870,6 +3335,70 @@ void towerSeventeen()
 		glVertex2f(-3.25, -15.38);
 		glVertex2f(-1.44, -18.46);
 	glEnd();
+}
+void cloud()
+{
+	glBegin(GL_POLYGON);
+	glColor3f(0.000, 0.749, 1.000);
+		glVertex2f(22.40, 15.91);
+		glVertex2f(22.40, 15.06);
+		glVertex2f(22.45, 13.94);
+		glVertex2f(21.55, 14.10);
+		glVertex2f(21.23, 14.26);
+		glVertex2f(21.02, 14.52);
+		glVertex2f(20.96, 14.90);
+		glVertex2f(21.07, 15.27);
+		glVertex2f(21.23, 15.70);
+		glVertex2f(21.60, 15.91);
+		glVertex2f(22.03, 15.96);
+	glEnd();
+	glBegin(GL_POLYGON);
+		glVertex2f(22.45, 13.94);
+		glVertex2f(22.40, 15.06);
+		glVertex2f(22.40, 15.91);
+		glVertex2f(22.61, 16.23);
+		glVertex2f(22.88, 16.39);
+		glVertex2f(23.36, 16.55);
+		glVertex2f(23.78, 15.22);
+		glVertex2f(23.89, 13.94);
+	glEnd();
+	glBegin(GL_POLYGON);
+		glVertex2f(23.89, 13.94);
+		glVertex2f(23.78, 15.22);
+		glVertex2f(23.36, 16.55);
+		glVertex2f(23.84, 16.81);
+		glVertex2f(24.10, 17.03);
+		glVertex2f(24.53, 17.24);
+		glVertex2f(24.90, 17.40);
+		glVertex2f(25.27, 17.50);
+		glVertex2f(25.70, 17.50);
+		glVertex2f(26.12, 17.50);
+		glVertex2f(26.39, 17.34);
+		glVertex2f(26.66, 17.13);
+		glVertex2f(26.92, 16.92);
+		glVertex2f(27.19, 16.60);
+		glVertex2f(27.40, 16.28);
+		glVertex2f(27.56, 15.11);
+		glVertex2f(27.83, 13.89);
+	glEnd();
+	glBegin(GL_POLYGON);
+		glVertex2f(27.40, 16.28);
+		glVertex2f(27.56, 15.11);
+		glVertex2f(27.83, 13.89);
+		glVertex2f(28.15, 14.05);
+		glVertex2f(28.46, 14.21);
+		glVertex2f(28.68, 14.47);
+		glVertex2f(28.89, 14.79);
+		glVertex2f(28.94, 15.16);
+		glVertex2f(28.89, 14.79);
+		glVertex2f(28.94, 15.16);
+		glVertex2f(28.89, 15.48);
+		glVertex2f(28.73, 15.86);
+		glVertex2f(28.52, 16.07);
+		glVertex2f(28.20, 16.12);
+		glVertex2f(27.88, 16.28);
+	glEnd();
+	
 }
 void background(){
 	towerTwo();
@@ -2911,22 +3440,28 @@ void background(){
 		towerSixteen();
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(33, 0, 0);
-	towerSeventeen();
+		glTranslatef(33, 0, 0);
+		towerSeventeen();
 	glPopMatrix();
+	cloud();
+	glPushMatrix();
+		glTranslatef(-60 ,1, 0);
+		glScalef(2, 1, 1);
+		cloud();
+	glPopMatrix();
+
 
 }
 void display(void)
 {
-	
-	backgroundRed = 0.529; //set backgrourd to start program
-	backgroundGreen = 0.808; //set backgrourd to start program
-	backgroundBlue = 0.980; //set backgrourd to start program
+	backgroundRed = 0.878; //set backgrourd to start program
+	backgroundGreen = 1.000; //set backgrourd to start program
+	backgroundBlue = 1.000; //set backgrourd to start program
 	glClearColor(backgroundRed, backgroundGreen, backgroundBlue, backgroundAlpha);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluOrtho2D(-30.0, 45.0, -20.0, 16.0);
+	gluOrtho2D(-30.0, 45.0, -20.0, 18.00);
 	background();
 	rightLeg();
 	underWare();

@@ -8,8 +8,7 @@ float backgroundGreen = 0;
 float backgroundBlue = 0;
 float backgroundAlpha = 0;
 int setColorWindows = 0;
-float timeCloud = -20;
-float timeIronManAuto = -20;
+float timeCloud = 0.01;
 void cloud()
 {
 	glBegin(GL_POLYGON);
@@ -77,12 +76,14 @@ void cloud()
 void moveCloud()
 {
 	glPushMatrix();
-		glTranslatef(-timeCloud, 0, 0);
-		cloud();
-		glPopMatrix();
-		timeCloud += 0.003;
-		if (timeCloud >= 60){ timeCloud = 0; }
-		glPopMatrix();
+	glTranslatef(-timeCloud, 0, 0);
+	cloud();
+	timeCloud += 0.01;
+	if (timeCloud >= 60){ timeCloud = 0; }
+
+	glPopMatrix();
+
+	glutPostRedisplay();
 }
 void MyCircle2f(GLfloat centerx, GLfloat centery, GLfloat radius)
 {
@@ -111,6 +112,59 @@ void MySemiCircle2f(GLfloat centerx, GLfloat centery, GLfloat radius)
 		glVertex2f(centerx + radius*cos(theta), centery + radius*sin(theta));
 	}
 	glEnd();
+}
+void background(){
+	towerTwo();
+	towerOne();
+	towerFour();
+	towerThree();
+	towerSix();
+	towerFive();
+	towerEight();
+	towerSeven();
+	glPushMatrix();
+	glTranslatef(30, -5, 0);
+	towerThirteen();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(30, -3, 0);
+	towerTen();
+	glPopMatrix();
+
+	towerNine();
+	towerEleven();
+
+	glPushMatrix();
+	glTranslatef(47, 0, 0);
+	towerTwelve();
+	glPopMatrix();
+
+	glPushMatrix();
+	//glTranslatef(1, 0, 0);
+	glTranslatef(34, 0, 0);
+	towerFourteen();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(39.5, 0, 0);
+	towerFiftteen();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(39.5, -4, 0);
+	towerSixteen();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(33, 0, 0);
+	towerSeventeen();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(65, 0, 0);
+	towerThree();
+	glPopMatrix();
 }
 void head()
 {
@@ -2542,30 +2596,6 @@ void windowOfTower()
 		glVertex2f(-29.90, -19.15);
 	glEnd();
 }
-void ironman(){
-	rightLeg();
-	underWare();
-	rightArm();
-	leftArm();
-	body();
-	head();
-	ack();
-	leftLeg();
-}
-void autoMoveIronman()
-{
-	glPushMatrix();
-	glTranslatef(timeIronManAuto, 0, 0);
-	ironman();
-	glPopMatrix();
-	timeIronManAuto += 0.01;
-	if (timeIronManAuto >= 1){ 
-		timeIronManAuto = 1;
-		
-	}
-	
-	glPopMatrix();
-}
 void towerOne()
 {
 		glBegin(GL_QUADS); //Tower 1.1 - lefe
@@ -3503,59 +3533,6 @@ void towerSeventeen()
 		glVertex2f(-1.44, -18.46);
 	glEnd();
 }
-void background(){
-	towerTwo();
-	towerOne();
-	towerFour();
-	towerThree();
-	towerSix();
-	towerFive();
-	towerEight();
-	towerSeven();
-	glPushMatrix();
-	glTranslatef(30, -5, 0);
-	towerThirteen();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(30, -3, 0);
-	towerTen();
-	glPopMatrix();
-
-	towerNine();
-	towerEleven();
-
-	glPushMatrix();
-	glTranslatef(47, 0, 0);
-	towerTwelve();
-	glPopMatrix();
-
-	glPushMatrix();
-	//glTranslatef(1, 0, 0);
-	glTranslatef(34, 0, 0);
-	towerFourteen();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(39.5, 0, 0);
-	towerFiftteen();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(39.5, -4, 0);
-	towerSixteen();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(33, 0, 0);
-	towerSeventeen();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(65, 0, 0);
-	towerThree();
-	glPopMatrix();
-}
 void display(void)
 {
 	backgroundRed = 0.878; //set backgrourd to start program
@@ -3566,12 +3543,15 @@ void display(void)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluOrtho2D(-30.0, 45.0, -20.0, 18.00);
-	background();
-	//ironman();
-	moveCloud();
-	autoMoveIronman();
-	glutPostRedisplay();
-	
+	//background();
+	rightLeg();
+	underWare();
+	rightArm();
+	leftArm();
+	body();
+	head();
+	ack();
+	leftLeg();
 	/*glTranslatef(-22.13, -4.10, 0);
 	glRotatef(sin(angleleg)*50, 0, 0, 1);
 	glTranslatef(22.13, 4.10, 0);*/

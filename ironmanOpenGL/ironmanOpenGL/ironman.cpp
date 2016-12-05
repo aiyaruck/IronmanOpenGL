@@ -7,9 +7,9 @@ float backgroundRed = 0;
 float backgroundGreen = 0;
 float backgroundBlue = 0;
 float backgroundAlpha = 0;
+float speedIronD = 0.00;
+float speedIronW = 0.00;
 int setColorWindows = 0;
-float timeCloud = -20;
-float timeIronManAuto = -20;
 void cloud()
 {
 	glBegin(GL_POLYGON);
@@ -73,16 +73,6 @@ void cloud()
 	glVertex2f(27.88, 16.28);
 	glEnd();
 
-}
-void moveCloud()
-{
-	glPushMatrix();
-		glTranslatef(-timeCloud, 0, 0);
-		cloud();
-		glPopMatrix();
-		timeCloud += 0.003;
-		if (timeCloud >= 60){ timeCloud = 0; }
-		glPopMatrix();
 }
 void MyCircle2f(GLfloat centerx, GLfloat centery, GLfloat radius)
 {
@@ -2552,20 +2542,6 @@ void ironman(){
 	ack();
 	leftLeg();
 }
-void autoMoveIronman()
-{
-	glPushMatrix();
-	glTranslatef(timeIronManAuto, 0, 0);
-	ironman();
-	glPopMatrix();
-	timeIronManAuto += 0.01;
-	if (timeIronManAuto >= 1){ 
-		timeIronManAuto = 1;
-		
-	}
-	
-	glPopMatrix();
-}
 void towerOne()
 {
 		glBegin(GL_QUADS); //Tower 1.1 - lefe
@@ -3389,6 +3365,7 @@ void towerTwelve()
 		glVertex2f(-26.80, -4.00);
 	glEnd();
 	
+	
 }
 void towerThirteen()
 {
@@ -3512,49 +3489,154 @@ void background(){
 	towerFive();
 	towerEight();
 	towerSeven();
+
 	glPushMatrix();
-	glTranslatef(30, -5, 0);
-	towerThirteen();
+		glTranslatef(30, -5, 0);
+		towerThirteen();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(30, -3, 0);
-	towerTen();
+		glTranslatef(30, -3, 0);
+		towerTen();
 	glPopMatrix();
 
 	towerNine();
 	towerEleven();
 
 	glPushMatrix();
-	glTranslatef(47, 0, 0);
-	towerTwelve();
+		glTranslatef(47, 0, 0);
+		towerTwelve();
 	glPopMatrix();
 
 	glPushMatrix();
 	//glTranslatef(1, 0, 0);
-	glTranslatef(34, 0, 0);
-	towerFourteen();
+		glTranslatef(34, 0, 0);
+		towerFourteen();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(39.5, 0, 0);
-	towerFiftteen();
+		glTranslatef(39.5, 0, 0);
+		towerFiftteen();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(39.5, -4, 0);
-	towerSixteen();
+		glTranslatef(39.5, -4, 0);
+		towerSixteen();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(33, 0, 0);
-	towerSeventeen();
+		glTranslatef(33, 0, 0);
+		towerSeventeen();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(65, 0, 0);
-	towerThree();
+		glTranslatef(65, 0, 0);
+		towerThree();
 	glPopMatrix();
+
+	//glPushMatrix();
+	for (int i = 0; i < 1; i++){
+		glTranslatef(49.5, 0, 0);
+		windowOfTower();
+	}for (int i = 0; i < 10; i++){
+		glTranslatef(0, 0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, 1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, -1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 10; i++){
+		glTranslatef(0, -0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, -1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, 1, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 10; i++){
+		glTranslatef(0, 0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){ // for tower 13 - 16
+		glTranslatef(2, -5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 2; i++){
+		glTranslatef(0, -0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, -0.8, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 2; i++){
+		glTranslatef(2.2, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 1; i++){
+		glTranslatef(0.5, 0.5, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 2; i++){
+		glTranslatef(0.8, 0, 0);
+		windowOfTower();
+	}
+	for (int i = 0; i < 2; i++){
+		glTranslatef(0.8, -0.8, 0);
+		windowOfTower();
+	}
+	
+	glPopMatrix();
+
+	
+
+}
+void moveIron()
+{
+	glPushMatrix();
+		glTranslatef(speedIronD, speedIronW, 0);
+		//glTranslatef(, 0, 0);
+		ironman();
+		if (speedIronD >= 81){
+			speedIronD = -20.00;
+		}
+		if (speedIronD <= -25){
+			speedIronD = 80;
+		}
+		if (speedIronW >= 40){
+			speedIronW = -30.00;
+		}
+		if (speedIronW <= -31){
+			speedIronW = 39.00;
+		}
+		glutPostRedisplay();
+	glPopMatrix();
+}
+void keyboard(unsigned char key, int d, int a) {
+	switch (key) {
+	case 'D': 
+	case 'd': speedIronD += 0.40;
+		break;
+	case 'A':
+	case 'a': speedIronD -= 0.40;
+		break;
+	case 'W':
+	case 'w': speedIronW += 0.20;
+		break;
+	case 'S':
+	case 's': speedIronW -= 0.20;
+		break;
+	}
+	
 }
 void display(void)
 {
@@ -3566,17 +3648,24 @@ void display(void)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluOrtho2D(-30.0, 45.0, -20.0, 18.00);
-	background();
-	//ironman();
-	moveCloud();
-	autoMoveIronman();
-	glutPostRedisplay();
+	cloud();
+	glPushMatrix();
+		background();
+	glPopMatrix();
+
+	moveIron();
 	
+	
+	
+	glutSwapBuffers();
+
+
+
+
 	/*glTranslatef(-22.13, -4.10, 0);
 	glRotatef(sin(angleleg)*50, 0, 0, 1);
 	glTranslatef(22.13, 4.10, 0);*/
 	/*glFlush();*/
-	glutSwapBuffers();
 }
 /*void rotateleg() {
 	angleleg += 0.01;
@@ -3590,8 +3679,8 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(1290, 625);
 	glutInitWindowPosition(40,80);
-	glutCreateWindow("Ironman");
-	
+	glutCreateWindow("Ironman555");
+	glutKeyboardFunc(keyboard);
 	glutDisplayFunc(display);
 	glutMainLoop();
 }

@@ -20,6 +20,10 @@ float speedIronW = 0.00;
 float speedCloud = -20.00;
 float degreeleg = 0.00;
 float degreearm = 0.00;
+float setbeam = 80.00;
+float beamEX = 0.00;
+float sunScale = 1.00;
+int StartbeamEX = 0;
 int setColorWindows = 0;
 int startJet = 0;
 
@@ -51,6 +55,37 @@ void MySemiCircle2f(GLfloat centerx, GLfloat centery, GLfloat radius)
 		glVertex2f(centerx + radius*cos(theta), centery + radius*sin(theta));
 	}
 	glEnd();
+}
+
+void MyEllipse(GLfloat centerx, GLfloat centery, GLfloat radiusx, GLfloat radiusy)
+{
+	GLint i;
+	GLdouble theta;
+	GLint circle_points = 100;
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glBegin(GL_POLYGON);
+	for (i = 0; i < circle_points; i++)
+	{
+		theta = 2 * PI*i / circle_points; // angle in radians
+		glVertex2f(centerx + radiusx*cos(theta), centery + radiusy*sin(theta));
+	}
+	glEnd();
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+void MyEllipse2(GLfloat centerx, GLfloat centery, GLfloat radiusx, GLfloat radiusy)
+{
+	GLint i;
+	GLdouble theta;
+	GLint circle_points = 100;
+	glBegin(GL_POLYGON);
+	for (i = 0; i < circle_points; i++)
+	{
+		theta = 2 * PI*i / circle_points; // angle in radians
+		glVertex2f(centerx + radiusx*cos(theta), centery + radiusy*sin(theta));
+	}
+	glEnd();
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void cloud()
@@ -3606,14 +3641,207 @@ void rightletSP()
 	glPopMatrix();
 }
 
+void beam()
+{
+	glBegin(GL_POLYGON);
+		glColor3f(1.000, 0.743, 0.150);
+		glVertex2f(-10.64, 2.50);
+		glVertex2f(-10.64, 2.00);
+		glVertex2f(80.84, -3.50);
+		glVertex2f(80.84, 4.50);
+	glEnd();
+		glBegin(GL_LINE_LOOP);
+			glColor3f(0.741, 0.718, 0.420);
+			glVertex2f(-10.64, 2.50);
+			glVertex2f(-10.64, 2.00);
+			glVertex2f(80.84, -3.50);
+			glVertex2f(80.84, 4.50);
+		glEnd();
+		
+	glLineWidth(1);
+}
+
+void beamEffect()
+{
+	glColor3f(0.878, 1.000, 1.000);
+	MyEllipse(3, 2.2, 1.00, 0.30);
+	glBegin(GL_TRIANGLES);
+		glVertex2f(3, 2.00);
+		glVertex2f(3.5, 1.6);
+		glVertex2f(3, 1.00);
+	glEnd();
+}
+
+void beamEffect2()
+{
+	glBegin(GL_LINES);
+		glColor3f(0.686, 0.933, 0.933);
+		glVertex2f(-10.64, 2.50);
+		glVertex2f(80.00, 3.50);
+	glEnd();
+}
+
+void beamEffect3()
+{
+	glBegin(GL_LINES);
+	glColor3f(0.498, 1.000, 0.831);
+	glVertex2f(-10.64, 2.50);
+	glVertex2f(80.00, 2.50);
+	glEnd();
+}
+
+void beamEffect4()
+{
+	glBegin(GL_LINES);
+	glColor3f(0.251, 0.878, 0.816);
+	glVertex2f(-10.64, 2.50);
+	glVertex2f(80.00, 1.50);
+	glEnd();
+}
+
+void beamEffect5()
+{
+	glBegin(GL_LINES);
+	glColor3f(0.686, 0.933, 0.933);
+	glVertex2f(-10.64, 2.50);
+	glVertex2f(80.00, 0.50);
+	glEnd();
+}
+
+void beamEffect6()
+{
+	glBegin(GL_LINES);
+	glColor3f(0.498, 1.000, 0.831);
+	glVertex2f(-10.64, 2.50);
+	glVertex2f(80.00, -0.50);
+	glEnd();
+}
+
+void beamEffect7()
+{
+	glBegin(GL_LINES);
+	glColor3f(0.251, 0.878, 0.816);
+	glVertex2f(-10.64, 2.50);
+	glVertex2f(80.00, -1.50);
+	glEnd();
+}
+
+void beamEffect8()
+{
+	glBegin(GL_LINES);
+	glColor3f(0.686, 0.933, 0.933);
+	glVertex2f(-10.64, 2.50);
+	glVertex2f(80.00, -2.50);
+	glEnd();
+}
+
+void beamEffect9()
+{
+	glBegin(GL_LINES);
+	glColor3f(0.498, 1.000, 0.831);
+	glVertex2f(-10.64, 2.50);
+	glVertex2f(80.00, -3.50);
+	glEnd();
+}
+
+void beamEffect10()
+{
+	glBegin(GL_LINES);
+	glColor3f(0.251, 0.878, 0.816);
+	glVertex2f(-10.64, 2.50);
+	glVertex2f(80.00, -4.50);
+	glEnd();
+}
+
+void beamEffectSP()
+{
+	glPushMatrix();
+		glTranslatef(0.5+beamEX, 0, 0);
+		beamEffect2();
+		beamEffect3();
+		beamEffect4();
+		beamEffect5();
+		beamEffect6();
+		beamEffect7();
+		beamEffect8();
+		beamEffect9();
+		beamEffect10();
+	glPopMatrix();
+	glPushMatrix();
+		glTranslatef(0 + beamEX, 0, 0);
+		glRotatef(beamEX * 100, 0, 0, 1);
+		beamEffect();
+	glPopMatrix();
+	if (StartbeamEX == 1){
+		beamEX += 0.08;
+	}
+	if (beamEX >= 80){
+		beamEX = 0.00;
+	}
+}
+
+void beamSP()
+{
+	glPushMatrix();
+		glTranslatef(setbeam, 0.25, 0);
+		glRotatef(degreearm-2.5, 0, 0, 1);
+		beam();
+		beamEffectSP();
+	glPopMatrix();
+	
+}
+
+void booster()
+{
+	glColor3f(1.000, 0.271, 0.000);
+	glPushMatrix();
+		glTranslatef(-26.28, -15.27, 0);
+		glRotatef(45, 0, 0, 1);
+		glTranslatef(26.28, 15.27, 0);
+		MyEllipse2(-26.28, -15.27, 1.8, 0.8);
+	glPopMatrix();
+
+	glColor3f(1.000, 0.647, 0.000);
+	glPushMatrix();
+		glTranslatef(-25.43, -14.37, 0);
+		glRotatef(45, 0, 0, 1);
+		glTranslatef(25.43, 14.37, 0);
+		MyEllipse2(-25.43, -14.37, 2.5,  0.5);
+	glPopMatrix();
+}
+
+void booster2()
+{
+	glColor3f(1.000, 0.647, 0.000);
+	glPushMatrix();
+		glTranslatef(-20.06, -12.08, 0);
+		glRotatef(45, 0, 0, 1);
+		glTranslatef(20.06, 12.08, 0);
+		MyEllipse2(-20.06, -12.08, 1.5, 0.6);
+	glPopMatrix();
+
+	glColor3f(1.000, 0.271, 0.000);
+	glPushMatrix();
+		glTranslatef(-19.47, -11.4, 0);
+		glRotatef(45, 0, 0, 1);
+		glTranslatef(19.47, 11.4, 0);
+		MyEllipse2(-19.47, -11.4, 2.0, 0.4);
+	glPopMatrix();
+}
+
 void moveIron()
 {
 	glPushMatrix();
 		glTranslatef(speedIronD, speedIronW, 0);
 		ironman();
+		if (startJet == 1){
+			booster();
+			booster2();
+		}
 		leftlegSP();
 		rightletSP();
 		rightArmSP();
+		beamSP();
 		if (speedIronD >= 81){
 			speedIronD = -20.00;
 		}
@@ -3647,16 +3875,20 @@ void keyboard(unsigned char key, int d, int a) {
 	case 'd': speedIronD += 0.40;
 		degreeleg = -5.00; glutPostRedisplay();
 		startJet = 1;
+		printf("Move Forward\n");
 		break;
 	case 'A':
 	case 'a': speedIronD -= 0.40;
 		degreeleg = 1.00; glutPostRedisplay();
+		printf("Turn Back\n");
 		break;
 	case 'W':
 	case 'w': speedIronW += 0.20;
+		printf("Move Up\n");
 		break;
 	case 'S':
 	case 's': speedIronW -= 0.20;
+		printf("Move Down\n");
 		break;
 	}
 }
@@ -3665,6 +3897,9 @@ void mymouse(int button, int state, int x, int y)
 {
 	if (state == GLUT_DOWN && button == GLUT_LEFT_BUTTON)
 		degreearm = 2.00;
+		setbeam = 0.00;
+		StartbeamEX = 1;
+		printf("Fire\n");
 	if (state == GLUT_UP && button == GLUT_LEFT_BUTTON)
 		degreearm = 0.00;
 }
@@ -3680,6 +3915,8 @@ void mainmenu(int value) {
 			windowsRed = 1.000;
 			windowsGreen = 1.000;
 			windowsBlue = 0.300;
+			startSun = 1;
+			printf("Change to Night Mode\n");
 	break;
 
 	case 2: backgroundRed = 0.686;
@@ -3691,6 +3928,8 @@ void mainmenu(int value) {
 			windowsRed = 1.000;
 			windowsGreen = 1.000;
 			windowsBlue = 1.000;
+			startSun = 0;
+			printf("Change to Day Mode\n");
 	break;
 
 	case 999: exit(0);
@@ -3700,7 +3939,7 @@ void mainmenu(int value) {
 void title(){
 	printf("\n");
 	printf("	HOW TO USE IRONMAN OPENGL Version Alpha1.0.\n");
-	printf("		Change the language to English.\n");
+	printf("		Change the language on keybord to English.\n");
 	printf("		Prees 'Left Click' to Fired the Beam\n");
 	printf("		Press 'D' to go Forward.\n");
 	printf("		Press 'A' to go Backward.\n");
@@ -3731,7 +3970,7 @@ int main(int argc, char** argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(1290, 625);
-	glutInitWindowPosition(40,80);
+	glutInitWindowPosition(80,80);
 	glutCreateWindow("IRONMAN OpenGL v.Alpha 1.0 Develop By IceYahzAIYARUCK");
 	glutKeyboardFunc(keyboard);
 	glutCreateMenu(mainmenu);

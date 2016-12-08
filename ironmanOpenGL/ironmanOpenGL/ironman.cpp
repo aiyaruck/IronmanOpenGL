@@ -23,6 +23,10 @@ float degreearm = 0.00;
 float setbeam = 80.00;
 float beamEX = 0.00;
 float sunScale = 1.00;
+float speedColor = 0.00;
+float speedColor2 = 0.00;
+float speedSuperAck = 0.00;
+float ironStart = 0.5;
 int StartbeamEX = 0;
 int setColorWindows = 0;
 int startJet = 0;
@@ -3641,10 +3645,41 @@ void rightletSP()
 	glPopMatrix();
 }
 
+void superAck()
+{
+	glBegin(GL_TRIANGLES);
+		glColor3f(0.000, 0.749, 1.000);
+		glVertex2f(-18.62, 2.93);
+		glVertex2f(-17.52, 2.93);
+		glVertex2f(-18.04, 2.07);
+	glEnd();
+		glBegin(GL_LINE_LOOP);
+			glColor3f(0.118, 0.565, 1.000);
+			glVertex2f(-18.62, 2.93);
+			glVertex2f(-17.52, 2.93);
+			glVertex2f(-18.04, 2.07);
+		glEnd();
+}
+
+void superAckSP()
+{
+	glPushMatrix();
+		glTranslatef(-17.98, 2.55, 0);
+		glRotatef(-sin(speedSuperAck) * 10000, 0, 0, 1);
+		glTranslatef(17.98, -2.55,0);
+		superAck();
+	glPopMatrix();
+	speedSuperAck += 0.00001;
+	glutPostRedisplay();
+}
+
 void beam()
 {
+	float r = 1.000;
+	float g = 0.743;
+	float b = 0.150;
 	glBegin(GL_POLYGON);
-		glColor3f(1.000, 0.743, 0.150);
+		glColor3f(r+speedColor2, g+speedColor2, b+speedColor2);
 		glVertex2f(-10.64, 2.50);
 		glVertex2f(-10.64, 2.00);
 		glVertex2f(80.84, -3.50);
@@ -3788,12 +3823,11 @@ void beamSP()
 		beam();
 		beamEffectSP();
 	glPopMatrix();
-	
 }
 
 void booster()
 {
-	glColor3f(1.000, 0.271, 0.000);
+	glColor3f(1.000, 0.271+speedColor, 0.000+speedColor);
 	glPushMatrix();
 		glTranslatef(-26.28, -15.27, 0);
 		glRotatef(45, 0, 0, 1);
@@ -3801,7 +3835,7 @@ void booster()
 		MyEllipse2(-26.28, -15.27, 1.8, 0.8);
 	glPopMatrix();
 
-	glColor3f(1.000, 0.647, 0.000);
+	glColor3f(1.000, 0.647-speedColor, 0.000-speedColor);
 	glPushMatrix();
 		glTranslatef(-25.43, -14.37, 0);
 		glRotatef(45, 0, 0, 1);
@@ -3812,7 +3846,7 @@ void booster()
 
 void booster2()
 {
-	glColor3f(1.000, 0.647, 0.000);
+	glColor3f(1.000, 0.647+speedColor, 0.000+speedColor);
 	glPushMatrix();
 		glTranslatef(-20.06, -12.08, 0);
 		glRotatef(45, 0, 0, 1);
@@ -3820,7 +3854,7 @@ void booster2()
 		MyEllipse2(-20.06, -12.08, 1.5, 0.6);
 	glPopMatrix();
 
-	glColor3f(1.000, 0.271, 0.000);
+	glColor3f(1.000, 0.271-speedColor, 0.000-speedColor);
 	glPushMatrix();
 		glTranslatef(-19.47, -11.4, 0);
 		glRotatef(45, 0, 0, 1);
@@ -3829,10 +3863,10 @@ void booster2()
 	glPopMatrix();
 }
 
-void moveIron()
+void IronmanStart()
 {
 	glPushMatrix();
-		glTranslatef(speedIronD, speedIronW, 0);
+		glTranslatef(0, ironStart, 0);
 		ironman();
 		if (startJet == 1){
 			booster();
@@ -3842,6 +3876,17 @@ void moveIron()
 		rightletSP();
 		rightArmSP();
 		beamSP();
+		superAckSP();
+	glPopMatrix();
+	ironStart += 0.001;
+	if (ironStart > 1.00){ ironStart = 0.00; }
+}
+
+void moveIron()
+{
+	glPushMatrix();
+		glTranslatef(speedIronD, speedIronW, 0);
+		IronmanStart();
 		if (speedIronD >= 81){
 			speedIronD = -20.00;
 		}
@@ -3875,19 +3920,25 @@ void keyboard(unsigned char key, int d, int a) {
 	case 'd': speedIronD += 0.40;
 		degreeleg = -5.00; glutPostRedisplay();
 		startJet = 1;
+		speedColor -= 0.05;
+		speedSuperAck += 0.002;
 		printf("Move Forward\n");
 		break;
 	case 'A':
 	case 'a': speedIronD -= 0.40;
 		degreeleg = 1.00; glutPostRedisplay();
+		speedColor += 0.05;
+		speedSuperAck += 0.002;
 		printf("Turn Back\n");
 		break;
 	case 'W':
 	case 'w': speedIronW += 0.20;
+		speedSuperAck += 0.001;
 		printf("Move Up\n");
 		break;
 	case 'S':
 	case 's': speedIronW -= 0.20;
+		speedSuperAck += 0.001;
 		printf("Move Down\n");
 		break;
 	}
@@ -3899,9 +3950,11 @@ void mymouse(int button, int state, int x, int y)
 		degreearm = 2.00;
 		setbeam = 0.00;
 		StartbeamEX = 1;
+		speedColor2 += 0.05;
 		printf("Fire\n");
 	if (state == GLUT_UP && button == GLUT_LEFT_BUTTON)
 		degreearm = 0.00;
+		speedColor2 -= 0.04;
 }
 
 void mainmenu(int value) {
@@ -3915,7 +3968,6 @@ void mainmenu(int value) {
 			windowsRed = 1.000;
 			windowsGreen = 1.000;
 			windowsBlue = 0.300;
-			startSun = 1;
 			printf("Change to Night Mode\n");
 	break;
 
@@ -3928,7 +3980,6 @@ void mainmenu(int value) {
 			windowsRed = 1.000;
 			windowsGreen = 1.000;
 			windowsBlue = 1.000;
-			startSun = 0;
 			printf("Change to Day Mode\n");
 	break;
 
